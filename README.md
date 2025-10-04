@@ -11,7 +11,7 @@
 | Nombre Completo | Código | Rol            | Correo Electrónico        |
 | --------------- | ------ | -------------- | ------------------------- |
 | scarllys del valle vallecilla caicedo  | 2459608 | colaborador | scarllys.vallecilla@correounivalle.edu.co |
-| [Estudiante 2]  | 123457 | [Colaborador]  | [correo2@institucion.edu] |
+| Juan Esteban Pereira Neira  | 2569459 | Colaborador | juan.pereira.neira@correounivalle.edu.co |
 | [Estudiante 3]  | 123458 | [Colaborador]  | [correo3@institucion.edu] |
 
 ---
