@@ -99,5 +99,55 @@ class ConjuntosDifusosTest extends AnyFunSuite {
       assert(valor >= 0.0 && valor <= 1.0)
     }
   }
+  test("Inclusion: un conjunto debe estar incluido en si mismo") {
+    val conjunto = cj.grande(10, 2)
+    assert(cj.inclusion(conjunto, conjunto))
+  }
+  test("Inclusion: conjunto con parametros mas grandes, debe incluir al mas pequeño") {
+    val conjuntoMenor = cj.grande(10, 2)
+    val conjuntoMayor = cj.grande(5, 1)
+    assert(cj.inclusion(conjuntoMenor, conjuntoMayor))
+  }
+  test("Inclusion: conjunto mas restrictivo no incluye al mas permisivo") {
+    val conjunto1 = cj.grande(5, 1)
+    val conjunto2 = cj.grande(10, 3)
+    assert(!cj.inclusion(conjunto1, conjunto2))
+  }
+  test("Igualdad: conjuntos identicos deben ser iguales") {
+    val c1 = cj.grande(10, 2)
+    val c2 = cj.grande(10, 2)
+    assert(cj.igualdad(c1, c2))
+  }
+  test("Igualdad: conjuntos diferentes no deben ser iguales") {
+    val c1 = cj.grande(10, 2)
+    val c2 = cj.grande(5, 1)
+    assert(!cj.igualdad(c1, c2))
+  }
+  test("Igualdad: debe ser simetrica") {
+    val c1 = cj.grande(10, 1)
+    val c2 = cj.grande(10, 1)
+    assert(cj.igualdad(c1, c2) == cj.igualdad(c2, c1))
+  }
+  test("Inclusion: conjunto complemento que no esta includio en el de origen") {
+    val conjunto = cj.grande(10, 2)
+    val complemento = cj.complemento(conjunto)
+    assert(!cj.inclusion(complemento, conjunto))
+  }
+  test("Inclusion: conjunto vacio esta incluido en cualquier conjunto") {
+    val conjuntoVacio: cj.ConjDifuso = _ => 0.0
+    val conjunto = cj.grande(10, 2)
+    assert(cj.inclusion(conjuntoVacio, conjunto))
+  }
+  test("Inclusion: cualquier conjunto esta incluido en el universal") {
+    val conjunto = cj.grande(10, 2)
+    val conjuntoUniversal: cj.ConjDifuso = _ => 1.0
+    assert(cj.inclusion(conjunto, conjuntoUniversal))
+  }
+  test("Igualdad: complementos doble general una igualdad con el conjunto original") {
+    val c1 = cj.grande(10, 2)
+    val c2 = cj.complemento(cj.complemento(c1))
+    assert(cj.igualdad(c1, c2))
+  }
+
 
 }
