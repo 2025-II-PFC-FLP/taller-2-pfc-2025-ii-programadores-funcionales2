@@ -3,6 +3,18 @@ package taller
 class ConjuntosDifusos {
   type ConjDifuso = Int => Double
 
+  def pertenece(elem: Int, s: ConjDifuso): Double = {
+    s(elem)
+  }
+  def muchoMayorQue(a: Int, m: Int): ConjDifuso = {
+    (x: Int) => {
+      if (x <= a) 0.0
+      else if (x > a && x <= m) (x - a).toDouble / (m - a).toDouble
+      else 1.0
+    }
+  }
+
+
   def grande(d: Int, e: Int): ConjDifuso = {
     (n: Int)=> {
       //si el numero es negativo o cero, no puede ser grande
