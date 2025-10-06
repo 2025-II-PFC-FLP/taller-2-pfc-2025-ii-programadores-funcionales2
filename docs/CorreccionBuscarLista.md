@@ -187,7 +187,3 @@ $$
 
 El algoritmo `buscarElemento` es correcto respecto a su especificación matemática.
 La demostración por inducción estructural confirma que el programa calcula precisamente la función de pertenencia sobre listas de enteros.
-
-El diseño asegura **terminación, pureza funcional y corrección estructural, cumpliendo los principios del paradigma funcional y los criterios formales de corrección de programas recursivos.
-
-

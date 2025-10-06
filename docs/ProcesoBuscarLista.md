@@ -30,8 +30,8 @@ class BuscarLista() {
 case Nil => false
 ```
 
-Si la lista **está vacía (`Nil`)**, no hay elementos que comparar, por lo tanto el resultado es `false` y la recursión finaliza.
-Este caso garantiza la **terminación** del algoritmo, evitando una recursión infinita.
+Si la lista está vacía (`Nil`), no hay elementos que comparar, por lo tanto el resultado es `false` y la recursión finaliza.
+Este caso garantiza la terminación del algoritmo, evitando una recursión infinita.
 
 ---
 
@@ -41,13 +41,12 @@ Este caso garantiza la **terminación** del algoritmo, evitando una recursión i
 case x :: xs => if (x == elemento) true else buscarElemento(xs, elemento)
 ```
 
-* Se separa la lista en:
-
-    * `x`: la **cabeza** (primer elemento).
-    * `xs`: la **cola** (resto de la lista).
-* Si `x` coincide con `elemento`, el resultado es `true`.
-* De lo contrario, se realiza una **llamada recursiva** sobre la sublista `xs`.
-* En cada paso se reduce el tamaño de la lista, acercándose progresivamente al caso base.
+- Se separa la lista en:
+  - `x`: la **cabeza** (primer elemento).
+  - `xs`: la **cola** (resto de la lista).
+- Si `x` coincide con `elemento`, el resultado es `true`.
+- De lo contrario, se realiza una **llamada recursiva** sobre la sublista `xs`.
+- En cada paso se reduce el tamaño de la lista, acercándose progresivamente al caso base.
 
 Este comportamiento responde a la definición matemática de pertenencia en una lista:
 
