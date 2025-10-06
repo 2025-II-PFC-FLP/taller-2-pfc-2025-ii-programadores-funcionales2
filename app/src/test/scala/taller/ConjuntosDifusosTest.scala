@@ -32,6 +32,28 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     assert(complemento(10) == 0.75) // 1 - 0.25 = 0.75
   }
 
+  test("complemento de 0 debe ser 1") {
+    val conjunto = cj.grande(10, 2)
+    val complemento = cj.complemento(conjunto)
+    assert(complemento(0) == 1.0)
+  }
+
+  test("complemento de complemento debe devolver el conjunto original") {
+    val conjunto = cj.grande(5, 2)
+    val complemento1 = cj.complemento(conjunto)
+    val complemento2 = cj.complemento(complemento1)
+    assert(math.abs(complemento2(10) - conjunto(10)) < 0.0001)
+  }
+
+  test("complemento siempre retorna valores entre 0 y 1") {
+    val conjunto = cj.grande(10, 2)
+    val complemento = cj.complemento(conjunto)
+    for (n <- -5 to 50) {
+      val valor = complemento(n)
+      assert(valor >= 0.0 && valor <= 1.0)
+    }
+  }
+
   test("unión debe retornar el máximo de los dos valores") {
     val conjunto1 = cj.grande(10, 1)
     val conjunto2 = cj.grande(20, 1)
@@ -40,6 +62,26 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     val valor1 = conjunto1(15)
     val valor2 = conjunto2(15)
     assert(union(15) == math.max(valor1, valor2))
+  }
+
+  test("unión con conjuntos idénticos devuelve el mismo conjunto") {
+    val conjunto = cj.grande(10, 1)
+    val union = cj.union(conjunto, conjunto)
+    assert(union(10) == conjunto(10))
+  }
+
+  test("unión con conjunto nulo devuelve el conjunto original") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoNulo = (_: Int) => 0.0
+    val union = cj.union(conjunto, conjuntoNulo)
+    assert(union(10) == conjunto(10))
+  }
+
+  test("unión con conjunto universal devuelve siempre 1") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoTotal = (_: Int) => 1.0
+    val union = cj.union(conjunto, conjuntoTotal)
+    assert(union(10) == 1.0)
   }
   test("intersección debe retornar el mínimo de los dos valores") {
     val conjunto1 = cj.grande(10, 1)
@@ -50,6 +92,27 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     val valor2 = conjunto2(15)
     assert(interseccion(15) == math.min(valor1, valor2))
   }
+
+  test("intersección con conjuntos idénticos devuelve el mismo conjunto") {
+    val conjunto = cj.grande(10, 1)
+    val inter = cj.interseccion(conjunto, conjunto)
+    assert(inter(10) == conjunto(10))
+  }
+
+  test("intersección con conjunto nulo devuelve 0 siempre") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoNulo = (_: Int) => 0.0
+    val inter = cj.interseccion(conjunto, conjuntoNulo)
+    assert(inter(10) == 0.0)
+  }
+
+  test("intersección con conjunto universal devuelve el conjunto original") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoTotal = (_: Int) => 1.0
+    val inter = cj.interseccion(conjunto, conjuntoTotal)
+    assert(inter(10) == conjunto(10))
+  }
+
 
   test("grande con diferentes parámetros d y e") {
     val conjunto1 = cj.grande(5, 1)
