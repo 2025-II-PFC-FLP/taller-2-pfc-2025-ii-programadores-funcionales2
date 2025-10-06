@@ -217,8 +217,8 @@ Ejemplo de ejecución conceptual:
 
 ```mermaid
 graph TD
-A[Elemento x] --> B[Función de pertenencia muA(x)]
-B --> C[Operación complementaria 1 - muA(x)]
+A[Elemento x] --> B[Función de pertenencia muA x]
+B --> C[Operación complementaria 1 - muA x]
 C --> D[Unión/Intersección con otra función]
 D --> E[Comparación de pertenencias]
 E --> F[Resultado: Valor o Booleano]
