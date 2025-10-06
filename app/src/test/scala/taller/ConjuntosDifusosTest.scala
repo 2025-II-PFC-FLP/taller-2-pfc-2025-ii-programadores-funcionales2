@@ -6,131 +6,132 @@ import org.scalatestplus.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class ConjuntosDifusosTest extends AnyFunSuite {
+
+  val cj = new ConjuntosDifusos()
   test("pertenece con conjunto constante 0.0 debe retornar 0.0 para cualquier número") {
-    val conjuntoCero: conjuntos.ConjDifuso = (x: Int) => 0.0
-    assert(conjuntos.pertenece(0, conjuntoCero) == 0.0)
-    assert(conjuntos.pertenece(5, conjuntoCero) == 0.0)
-    assert(conjuntos.pertenece(-10, conjuntoCero) == 0.0)
-    assert(conjuntos.pertenece(100, conjuntoCero) == 0.0)
-    assert(conjuntos.pertenece(Int.MaxValue, conjuntoCero) == 0.0)
+    val conjuntoCero: cj.ConjDifuso = (x: Int) => 0.0
+    assert(cj.pertenece(0, conjuntoCero) == 0.0)
+    assert(cj.pertenece(5, conjuntoCero) == 0.0)
+    assert(cj.pertenece(-10, conjuntoCero) == 0.0)
+    assert(cj.pertenece(100, conjuntoCero) == 0.0)
+    assert(cj.pertenece(Int.MaxValue, conjuntoCero) == 0.0)
   }
 
   test("pertenece con conjunto constante 1.0 debe retornar 1.0 para cualquier número") {
-    val conjuntoUno: conjuntos.ConjDifuso = (x: Int) => 1.0
-    assert(conjuntos.pertenece(0, conjuntoUno) == 1.0)
-    assert(conjuntos.pertenece(-5, conjuntoUno) == 1.0)
-    assert(conjuntos.pertenece(50, conjuntoUno) == 1.0)
-    assert(conjuntos.pertenece(1000, conjuntoUno) == 1.0)
-    assert(conjuntos.pertenece(Int.MinValue, conjuntoUno) == 1.0)
+    val conjuntoUno: cj.ConjDifuso = (x: Int) => 1.0
+    assert(cj.pertenece(0, conjuntoUno) == 1.0)
+    assert(cj.pertenece(-5, conjuntoUno) == 1.0)
+    assert(cj.pertenece(50, conjuntoUno) == 1.0)
+    assert(cj.pertenece(1000, conjuntoUno) == 1.0)
+    assert(cj.pertenece(Int.MinValue, conjuntoUno) == 1.0)
   }
 
   test("pertenece con función lineal debe retornar valores correctos") {
-    val conjuntoLineal: conjuntos.ConjDifuso = (x: Int) => x.toDouble / 10.0
-    assert(conjuntos.pertenece(0, conjuntoLineal) == 0.0)
-    assert(conjuntos.pertenece(5, conjuntoLineal) == 0.5)
-    assert(conjuntos.pertenece(10, conjuntoLineal) == 1.0)
-    assert(conjuntos.pertenece(15, conjuntoLineal) == 1.5)
-    assert(conjuntos.pertenece(-5, conjuntoLineal) == -0.5)
+    val conjuntoLineal: cj.ConjDifuso = (x: Int) => x.toDouble / 10.0
+    assert(cj.pertenece(0, conjuntoLineal) == 0.0)
+    assert(cj.pertenece(5, conjuntoLineal) == 0.5)
+    assert(cj.pertenece(10, conjuntoLineal) == 1.0)
+    assert(cj.pertenece(15, conjuntoLineal) == 1.5)
+    assert(cj.pertenece(-5, conjuntoLineal) == -0.5)
   }
 
   test("pertenece con función cuadrática debe retornar valores correctos") {
-    val conjuntoCuadratico: conjuntos.ConjDifuso = (x: Int) => math.pow(x, 2) / 100.0
-    assert(conjuntos.pertenece(0, conjuntoCuadratico) == 0.0)
-    assert(conjuntos.pertenece(5, conjuntoCuadratico) == 0.25)
-    assert(conjuntos.pertenece(10, conjuntoCuadratico) == 1.0)
-    assert(conjuntos.pertenece(-5, conjuntoCuadratico) == 0.25)
-    assert(conjuntos.pertenece(-10, conjuntoCuadratico) == 1.0)
+    val conjuntoCuadratico: cj.ConjDifuso = (x: Int) => math.pow(x, 2) / 100.0
+    assert(cj.pertenece(0, conjuntoCuadratico) == 0.0)
+    assert(cj.pertenece(5, conjuntoCuadratico) == 0.25)
+    assert(cj.pertenece(10, conjuntoCuadratico) == 1.0)
+    assert(cj.pertenece(-5, conjuntoCuadratico) == 0.25)
+    assert(cj.pertenece(-10, conjuntoCuadratico) == 1.0)
   }
 
   test("pertenece con función por partes debe retornar valores correctos") {
-    val conjuntoPartes: conjuntos.ConjDifuso = (x: Int) => {
+    val conjuntoPartes: cj.ConjDifuso = (x: Int) => {
       if (x < 0) 0.0
       else if (x < 5) 0.3
       else if (x < 10) 0.7
       else 1.0
     }
-    assert(conjuntos.pertenece(-10, conjuntoPartes) == 0.0)
-    assert(conjuntos.pertenece(0, conjuntoPartes) == 0.3)
-    assert(conjuntos.pertenece(3, conjuntoPartes) == 0.3)
-    assert(conjuntos.pertenece(7, conjuntoPartes) == 0.7)
-    assert(conjuntos.pertenece(15, conjuntoPartes) == 1.0)
+    assert(cj.pertenece(-10, conjuntoPartes) == 0.0)
+    assert(cj.pertenece(0, conjuntoPartes) == 0.3)
+    assert(cj.pertenece(3, conjuntoPartes) == 0.3)
+    assert(cj.pertenece(7, conjuntoPartes) == 0.7)
+    assert(cj.pertenece(15, conjuntoPartes) == 1.0)
   }
 
   test("muchoMayorQue(1, 3) debe retornar valores correctos") {
-    val mm1 = conjuntos.muchoMayorQue(1, 3)
+    val mm1 = cj.muchoMayorQue(1, 3)
 
     // Valores menores o iguales a 1
-    assert(conjuntos.pertenece(0, mm1) == 0.0)
-    assert(conjuntos.pertenece(1, mm1) == 0.0)
+    assert(cj.pertenece(0, mm1) == 0.0)
+    assert(cj.pertenece(1, mm1) == 0.0)
 
     // Valores entre 1 y 3 (crecimiento lineal)
-    assert(conjuntos.pertenece(2, mm1) == 0.5)  // (2-1)/(3-1) = 0.5
-    assert(conjuntos.pertenece(3, mm1) == 1.0)  // (3-1)/(3-1) = 1.0
+    assert(cj.pertenece(2, mm1) == 0.5)  // (2-1)/(3-1) = 0.5
+    assert(cj.pertenece(3, mm1) == 1.0)  // (3-1)/(3-1) = 1.0
 
     // Valores mayores a 3
-    assert(conjuntos.pertenece(4, mm1) == 1.0)
-    assert(conjuntos.pertenece(10, mm1) == 1.0)
-    assert(conjuntos.pertenece(100, mm1) == 1.0)
+    assert(cj.pertenece(4, mm1) == 1.0)
+    assert(cj.pertenece(10, mm1) == 1.0)
+    assert(cj.pertenece(100, mm1) == 1.0)
   }
 
   test("muchoMayorQue(2, 6) debe retornar valores correctos") {
-    val mm2 = conjuntos.muchoMayorQue(2, 6)
+    val mm2 = cj.muchoMayorQue(2, 6)
 
     // Valores menores o iguales a 2
-    assert(conjuntos.pertenece(0, mm2) == 0.0)
-    assert(conjuntos.pertenece(1, mm2) == 0.0)
-    assert(conjuntos.pertenece(2, mm2) == 0.0)
+    assert(cj.pertenece(0, mm2) == 0.0)
+    assert(cj.pertenece(1, mm2) == 0.0)
+    assert(cj.pertenece(2, mm2) == 0.0)
 
     // Valores entre 2 y 6
-    assert(conjuntos.pertenece(3, mm2) == 0.25)  // (3-2)/(6-2) = 0.25
-    assert(conjuntos.pertenece(4, mm2) == 0.5)   // (4-2)/(6-2) = 0.5
-    assert(conjuntos.pertenece(5, mm2) == 0.75)  // (5-2)/(6-2) = 0.75
-    assert(conjuntos.pertenece(6, mm2) == 1.0)   // (6-2)/(6-2) = 1.0
+    assert(cj.pertenece(3, mm2) == 0.25)  // (3-2)/(6-2) = 0.25
+    assert(cj.pertenece(4, mm2) == 0.5)   // (4-2)/(6-2) = 0.5
+    assert(cj.pertenece(5, mm2) == 0.75)  // (5-2)/(6-2) = 0.75
+    assert(cj.pertenece(6, mm2) == 1.0)   // (6-2)/(6-2) = 1.0
 
     // Valores mayores a 6
-    assert(conjuntos.pertenece(7, mm2) == 1.0)
-    assert(conjuntos.pertenece(100, mm2) == 1.0)
+    assert(cj.pertenece(7, mm2) == 1.0)
+    assert(cj.pertenece(100, mm2) == 1.0)
   }
 
   test("muchoMayorQue(0, 5) debe retornar valores correctos") {
-    val mm3 = conjuntos.muchoMayorQue(0, 5)
+    val mm3 = cj.muchoMayorQue(0, 5)
 
-    assert(conjuntos.pertenece(-1, mm3) == 0.0)
-    assert(conjuntos.pertenece(0, mm3) == 0.0)
-    assert(conjuntos.pertenece(1, mm3) == 0.2)  // (1-0)/(5-0) = 0.2
-    assert(conjuntos.pertenece(3, mm3) == 0.6)  // (3-0)/(5-0) = 0.6
-    assert(conjuntos.pertenece(5, mm3) == 1.0)
-    assert(conjuntos.pertenece(6, mm3) == 1.0)
+    assert(cj.pertenece(-1, mm3) == 0.0)
+    assert(cj.pertenece(0, mm3) == 0.0)
+    assert(cj.pertenece(1, mm3) == 0.2)  // (1-0)/(5-0) = 0.2
+    assert(cj.pertenece(3, mm3) == 0.6)  // (3-0)/(5-0) = 0.6
+    assert(cj.pertenece(5, mm3) == 1.0)
+    assert(cj.pertenece(6, mm3) == 1.0)
   }
 
   test("muchoMayorQue(5, 10) con valores negativos") {
-    val mm4 = conjuntos.muchoMayorQue(5, 10)
+    val mm4 = cj.muchoMayorQue(5, 10)
 
     // Valores negativos y menores a 5
-    assert(conjuntos.pertenece(-10, mm4) == 0.0)
-    assert(conjuntos.pertenece(0, mm4) == 0.0)
-    assert(conjuntos.pertenece(4, mm4) == 0.0)
+    assert(cj.pertenece(-10, mm4) == 0.0)
+    assert(cj.pertenece(0, mm4) == 0.0)
+    assert(cj.pertenece(4, mm4) == 0.0)
 
     // Valores entre 5 y 10
-    assert(conjuntos.pertenece(5, mm4) == 0.0)
-    assert(conjuntos.pertenece(7, mm4) == 0.4)  // (7-5)/(10-5) = 0.4
-    assert(conjuntos.pertenece(10, mm4) == 1.0)
+    assert(cj.pertenece(5, mm4) == 0.0)
+    assert(cj.pertenece(7, mm4) == 0.4)  // (7-5)/(10-5) = 0.4
+    assert(cj.pertenece(10, mm4) == 1.0)
 
     // Valores mayores a 10
-    assert(conjuntos.pertenece(11, mm4) == 1.0)
+    assert(cj.pertenece(11, mm4) == 1.0)
   }
 
   test("muchoMayorQue(10, 10) caso límite con a == m") {
-    val mm5 = conjuntos.muchoMayorQue(10, 10)
+    val mm5 = cj.muchoMayorQue(10, 10)
 
     // Cuando a == m, cualquier x <= a es 0, cualquier x > a es 1
-    assert(conjuntos.pertenece(9, mm5) == 0.0)
-    assert(conjuntos.pertenece(10, mm5) == 0.0)
-    assert(conjuntos.pertenece(11, mm5) == 1.0)
+    assert(cj.pertenece(9, mm5) == 0.0)
+    assert(cj.pertenece(10, mm5) == 0.0)
+    assert(cj.pertenece(11, mm5) == 1.0)
   }
 
 
-  val cj = new ConjuntosDifusos()
   test("grande con números negativos o cero debe retornar 0.0") {
     val conjunto = cj.grande(5, 2)
     assert(conjunto(-1) == 0.0)
@@ -149,10 +150,52 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     // Para n=10, d=10: 10/(10+10) = 0.5
     assert(conjunto(10) == 0.5)
   }
+  test("grande con diferentes parámetros d y e") {
+    val conjunto1 = cj.grande(5, 1)
+    // Para n=10, d=5: 10/(10+5) = 10/15 ≈ 0.666
+    assert(conjunto1(10) == 10.0/15.0)
+
+    val conjunto2 = cj.grande(5, 2)
+    // Para n=10, d=5, e=2: (10/15)² ≈ 0.444
+    assert(conjunto2(10) == math.pow(10.0/15.0, 2))
+  }
+  test("grande con números muy grandes se acerca a 1") {
+    val conjunto = cj.grande(10, 1)
+    // Para n=1000: 1000/(1000+10) ≈ 0.990
+    assert(conjunto(1000) > 0.99)
+  }
+
+  test("grande con números pequeños tiene valores bajos") {
+    val conjunto = cj.grande(10, 1)
+    // Para n=1: 1/(1+10) = 1/11 ≈ 0.0909
+    assert(conjunto(1) == 1.0/11.0)
+  }
   test("complemento debe retornar 1 - valor original") {
     val conjunto = cj.grande(10, 2)
     val complemento = cj.complemento(conjunto)
     assert(complemento(10) == 0.75) // 1 - 0.25 = 0.75
+  }
+
+  test("complemento de 0 debe ser 1") {
+    val conjunto = cj.grande(10, 2)
+    val complemento = cj.complemento(conjunto)
+    assert(complemento(0) == 1.0)
+  }
+
+  test("complemento de complemento debe devolver el conjunto original") {
+    val conjunto = cj.grande(5, 2)
+    val complemento1 = cj.complemento(conjunto)
+    val complemento2 = cj.complemento(complemento1)
+    assert(math.abs(complemento2(10) - conjunto(10)) < 0.0001)
+  }
+
+  test("complemento siempre retorna valores entre 0 y 1") {
+    val conjunto = cj.grande(10, 2)
+    val complemento = cj.complemento(conjunto)
+    for (n <- -5 to 50) {
+      val valor = complemento(n)
+      assert(valor >= 0.0 && valor <= 1.0)
+    }
   }
 
   test("unión debe retornar el máximo de los dos valores") {
@@ -164,6 +207,36 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     val valor2 = conjunto2(15)
     assert(union(15) == math.max(valor1, valor2))
   }
+
+  test("unión con conjuntos idénticos devuelve el mismo conjunto") {
+    val conjunto = cj.grande(10, 1)
+    val union = cj.union(conjunto, conjunto)
+    assert(union(10) == conjunto(10))
+  }
+
+  test("unión con conjunto nulo devuelve el conjunto original") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoNulo = (_: Int) => 0.0
+    val union = cj.union(conjunto, conjuntoNulo)
+    assert(union(10) == conjunto(10))
+  }
+
+  test("unión con conjunto universal devuelve siempre 1") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoTotal = (_: Int) => 1.0
+    val union = cj.union(conjunto, conjuntoTotal)
+    assert(union(10) == 1.0)
+  }
+  test("unión con valores iguales debe mantener el mismo valor") {
+    val conjunto1 = (_: Int) => 0.5
+    val conjunto2 = (_: Int) => 0.5
+
+    val union = cj.union(conjunto1, conjunto2)
+    assert(union(10) == 0.5)
+    assert(union(0) == 0.5)
+    assert(union(100) == 0.5)
+  }
+
   test("intersección debe retornar el mínimo de los dos valores") {
     val conjunto1 = cj.grande(10, 1)
     val conjunto2 = cj.grande(20, 1)
@@ -174,15 +247,27 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     assert(interseccion(15) == math.min(valor1, valor2))
   }
 
-  test("grande con diferentes parámetros d y e") {
-    val conjunto1 = cj.grande(5, 1)
-    // Para n=10, d=5: 10/(10+5) = 10/15 ≈ 0.666
-    assert(conjunto1(10) == 10.0/15.0)
-
-    val conjunto2 = cj.grande(5, 2)
-    // Para n=10, d=5, e=2: (10/15)² ≈ 0.444
-    assert(conjunto2(10) == math.pow(10.0/15.0, 2))
+  test("intersección con conjuntos idénticos devuelve el mismo conjunto") {
+    val conjunto = cj.grande(10, 1)
+    val inter = cj.interseccion(conjunto, conjunto)
+    assert(inter(10) == conjunto(10))
   }
+
+  test("intersección con conjunto nulo devuelve 0 siempre") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoNulo = (_: Int) => 0.0
+    val inter = cj.interseccion(conjunto, conjuntoNulo)
+    assert(inter(10) == 0.0)
+  }
+
+  test("intersección con conjunto universal devuelve el conjunto original") {
+    val conjunto = cj.grande(10, 1)
+    val conjuntoTotal = (_: Int) => 1.0
+    val inter = cj.interseccion(conjunto, conjuntoTotal)
+    assert(inter(10) == conjunto(10))
+  }
+
+
   test("complemento de complemento debe ser el conjunto original") {
     val conjuntoOriginal = cj.grande(10, 2)
     val complemento1 = cj.complemento(conjuntoOriginal)
@@ -200,17 +285,8 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     assert(interseccionMismo(10) == conjunto(10))
   }
 
-  test("grande con números muy grandes se acerca a 1") {
-    val conjunto = cj.grande(10, 1)
-    // Para n=1000: 1000/(1000+10) ≈ 0.990
-    assert(conjunto(1000) > 0.99)
-  }
 
-  test("grande con números pequeños tiene valores bajos") {
-    val conjunto = cj.grande(10, 1)
-    // Para n=1: 1/(1+10) = 1/11 ≈ 0.0909
-    assert(conjunto(1) == 1.0/11.0)
-  }
+
   test("valores de pertenencia siempre entre 0 y 1") {
     val conjunto = cj.grande(10, 2)
 
