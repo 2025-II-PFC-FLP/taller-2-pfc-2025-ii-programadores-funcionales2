@@ -1,19 +1,20 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/lEw1Qm1j)
-# Asignación: [Nombre de la asignación]
+# Asignación: Funcion de alto orden
 
-**Fecha:** [DD/MM/AAAA]
-**Curso:** [Nombre del Curso]
+**Fecha:** 06/10/2025
+**Curso:** Fundamentos de Programación Funcional y Concurrente
+**Grupo:** 51
 
 ---
 
 ## 👥 Integrantes del Grupo
 
-| Nombre Completo | Código | Rol            | Correo Electrónico        |
-| --------------- | ------ | -------------- | ------------------------- |
-| scarllys del valle vallecilla caicedo  | 2459608 | colaborador | scarllys.vallecilla@correounivalle.edu.co |
-| Juan Esteban Pereira Neira  | 2569459 | Colaborador | juan.pereira.neira@correounivalle.edu.co |
-| [Estudiante 3]  | 123458 | [Colaborador]  | [correo3@institucion.edu] |
-
+| Nombre Completo                       | Código | Rol            | Correo Electrónico                          |
+|---------------------------------------| ------ | -------------- |---------------------------------------------|
+| Valentina Betancourt Caicedo          | 2459411 | Colaborador | betancourt.valentina@correounivalle.edu.co  |
+| Jaider Bermudez Giron                 | 2569453 | Colaborador | jaider.bermudez@correounivalle.edu.co       |
+| Juan Esteban Pereira Neira            | 2569459 | Colaborador | juan.pereira.neira@correounivalle.edu.co    |
+| Scarllys del Valle Vallecilla Caicedo | 2459608 | colaborador | scarllys.vallecilla@correounivalle.edu.co   |
 ---
 
 ## 📌 Descripción de la Asignación
